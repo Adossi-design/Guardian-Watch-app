@@ -1,0 +1,148 @@
+name: guardian_watch
+description: GuardianWatch — AI-powered personal health monitoring and emergency response ecosystem.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.10.7
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  # ── State management ──────────────────────────────────────────────────────
+  flutter_riverpod: ^2.6.1
+  riverpod_annotation: ^2.6.1
+
+  # ── Navigation ────────────────────────────────────────────────────────────
+  go_router: ^14.8.1
+
+  # ── Firebase ──────────────────────────────────────────────────────────────
+  firebase_core: ^3.13.0
+  firebase_auth: ^5.5.2
+  cloud_firestore: ^5.6.6
+  firebase_database: ^11.3.5
+  firebase_messaging: ^15.2.5
+  firebase_app_check: ^0.3.2+4
+  firebase_storage: ^12.4.5
+  firebase_analytics: ^11.4.4
+  firebase_crashlytics: ^4.3.5
+  firebase_remote_config: ^5.4.5
+
+  # ── Local storage ─────────────────────────────────────────────────────────
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  flutter_secure_storage: ^9.2.4
+
+  # ── Encryption ────────────────────────────────────────────────────────────
+  encrypt: ^5.0.3
+  pointycastle: ^3.9.1
+
+  # ── Authentication / biometrics ───────────────────────────────────────────
+  local_auth: ^2.3.0
+
+  # ── Health data ───────────────────────────────────────────────────────────
+  health: ^12.2.0
+
+  # ── Location & maps ───────────────────────────────────────────────────────
+  geolocator: ^13.0.4
+  google_maps_flutter: ^2.10.0
+  flutter_polyline_points: ^2.1.0
+
+  # ── Notifications ─────────────────────────────────────────────────────────
+  flutter_local_notifications: ^18.0.1
+
+  # ── Voice AI ──────────────────────────────────────────────────────────────
+  speech_to_text: ^7.0.0
+  flutter_tts: ^4.2.0
+
+  # ── Home screen widget ────────────────────────────────────────────────────
+  home_widget: ^0.7.0
+
+  # ── Sensors & device ──────────────────────────────────────────────────────
+  sensors_plus: ^6.1.0
+  connectivity_plus: ^6.1.4
+  permission_handler: ^11.4.0
+  haptic_feedback: ^0.5.1+1
+  battery_plus: ^6.0.3
+  device_info_plus: ^11.2.0
+
+  # ── Dependency injection ──────────────────────────────────────────────────
+  get_it: ^8.0.3
+  injectable: ^2.5.0
+
+  # ── Data models ───────────────────────────────────────────────────────────
+  freezed_annotation: ^2.4.4
+  json_annotation: ^4.9.0
+  equatable: ^2.0.7
+  dartz: ^0.10.1
+
+  # ── Networking ────────────────────────────────────────────────────────────
+  dio: ^5.8.0+1
+  http: ^1.3.0
+
+  # ── Background ────────────────────────────────────────────────────────────
+  flutter_foreground_task: ^8.14.0
+  workmanager: ^0.5.2
+
+  # ── Utilities ─────────────────────────────────────────────────────────────
+  uuid: ^4.5.2
+  intl: ^0.20.2
+  logger: ^2.5.0
+  url_launcher: ^6.3.1
+  image_picker: ^1.1.2
+  cached_network_image: ^3.4.1
+  flutter_svg: ^2.0.17
+  shimmer: ^3.0.0
+  cupertino_icons: ^1.0.8
+
+  # ── Fonts ─────────────────────────────────────────────────────────────────
+  # Inter via google_fonts for development; bundle in assets/fonts/ for prod
+  google_fonts: ^6.2.1
+
+  # ── Onboarding / UI ───────────────────────────────────────────────────────
+  pinput: ^5.0.1
+  smooth_page_indicator: ^1.2.0+3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+  # ── Code generation ───────────────────────────────────────────────────────
+  build_runner: ^2.4.15
+  riverpod_generator: ^2.6.1
+  injectable_generator: ^2.5.0
+  freezed: ^2.5.8
+  json_serializable: ^6.9.4
+
+  # ── Testing ───────────────────────────────────────────────────────────────
+  mocktail: ^1.0.4
+  fake_cloud_firestore: ^3.1.0
+  firebase_auth_mocks: ^0.14.1
+
+flutter:
+  uses-material-design: true
+  generate: true
+
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/models/
+    - assets/lottie/
+
+  # Inter font bundled here for production offline use.
+  # For development, google_fonts handles it (see dependencies).
+  # To enable bundled fonts: download TTFs to assets/fonts/ and uncomment:
+  # fonts:
+  #   - family: Inter
+  #     fonts:
+  #       - asset: assets/fonts/Inter-Regular.ttf
+  #       - asset: assets/fonts/Inter-Medium.ttf
+  #         weight: 500
+  #       - asset: assets/fonts/Inter-SemiBold.ttf
+  #         weight: 600
+  #       - asset: assets/fonts/Inter-Bold.ttf
+  #         weight: 700

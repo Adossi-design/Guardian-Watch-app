@@ -1,0 +1,14 @@
+# SETUP: Copy this file to local.properties (same folder) and fill in the values.
+#
+#   cp android/local.properties.example android/local.properties
+#
+# local.properties is gitignored — never commit it.
+# Replace the paths below with your actual SDK locations.
+
+sdk.dir=/Users/YOUR_NAME/Library/Android/sdk
+flutter.sdk=/Users/YOUR_NAME/flutter
+
+# Google Maps API key
+# Get a key at: https://console.cloud.google.com → APIs & Services → Credentials
+# Enable: Maps SDK for Android on that project.
+GOOGLE_MAPS_API_KEY=YOUR_GOOGLE_MAPS_API_KEY_HERE

@@ -1,0 +1,9 @@
+// SETUP: Copy this file to GoogleMapsAPIKey.swift (same folder) and replace
+// the placeholder with your key from Google Cloud Console.
+//
+//   cp ios/Runner/GoogleMapsAPIKey.swift.example ios/Runner/GoogleMapsAPIKey.swift
+//
+// GoogleMapsAPIKey.swift is gitignored — never commit it.
+// Get a key at: https://console.cloud.google.com → APIs & Services → Credentials
+// Enable: Maps SDK for iOS on that project.
+let googleMapsApiKey = "YOUR_GOOGLE_MAPS_API_KEY_HERE"
