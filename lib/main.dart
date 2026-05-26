@@ -24,6 +24,9 @@ import 'features/geofencing/domain/usecases/record_breach_usecase.dart';
 import 'features/geofencing/domain/usecases/update_location_usecase.dart';
 import 'features/geofencing/presentation/bloc/geofence_provider.dart';
 import 'features/health_monitoring/domain/repositories/health_repository.dart';
+import 'features/voice_ai/domain/repositories/voice_repository.dart';
+import 'features/voice_ai/domain/usecases/save_voice_session_usecase.dart';
+import 'features/voice_ai/presentation/bloc/voice_provider.dart';
 import 'features/health_monitoring/domain/usecases/fetch_health_data_usecase.dart';
 import 'features/health_monitoring/domain/usecases/save_health_event_usecase.dart';
 import 'features/health_monitoring/presentation/bloc/health_provider.dart';
@@ -103,6 +106,10 @@ Future<void> main() async {
             .overrideWithValue(sl<UpdateLocationUseCase>()),
         recordBreachUseCaseProvider
             .overrideWithValue(sl<RecordBreachUseCase>()),
+        voiceRepositoryProvider
+            .overrideWithValue(sl<VoiceRepository>()),
+        saveVoiceSessionUseCaseProvider
+            .overrideWithValue(sl<SaveVoiceSessionUseCase>()),
       ],
       child: const GuardianWatchApp(),
     ),

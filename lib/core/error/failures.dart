@@ -48,6 +48,10 @@ final class GeofenceFailure extends Failure {
   const GeofenceFailure([super.message = 'Geofence error.']);
 }
 
+final class VoiceAIFailure extends Failure {
+  const VoiceAIFailure([super.message = 'Voice AI error.']);
+}
+
 final class UnexpectedFailure extends Failure {
   const UnexpectedFailure([super.message = 'An unexpected error occurred.']);
 }

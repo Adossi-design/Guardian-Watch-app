@@ -55,6 +55,7 @@ dependencies:
   flutter_local_notifications: ^18.0.1
 
   # ── Voice AI ──────────────────────────────────────────────────────────────
+  porcupine_flutter: ^3.0.4
   speech_to_text: ^7.0.0
   flutter_tts: ^4.2.0
 

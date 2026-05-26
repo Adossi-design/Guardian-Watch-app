@@ -1,5 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- Microphone — required for wake word detection and speech recognition -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
     <!-- Location permissions — fine + coarse required together for GPS accuracy -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />

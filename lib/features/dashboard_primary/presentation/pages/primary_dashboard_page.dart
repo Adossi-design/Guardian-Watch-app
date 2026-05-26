@@ -120,6 +120,17 @@ class _PrimaryDashboardPageState extends ConsumerState<PrimaryDashboardPage> {
                     iconColor: AppColors.primary,
                     onTap: () => context.push('/invite'),
                   ),
+                  const SizedBox(height: AppSpacing.md),
+
+                  // Voice AI card
+                  _StatusCard(
+                    title: 'Hey Guardian',
+                    subtitle: 'Ask your AI health assistant',
+                    icon: Icons.mic_rounded,
+                    color: AppColors.sleepBg,
+                    iconColor: AppColors.primaryLight,
+                    onTap: () => context.push('/voice'),
+                  ),
 
                   const SizedBox(height: 140),
                 ],

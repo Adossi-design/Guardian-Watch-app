@@ -112,9 +112,8 @@ class MonitorDashboardPage extends ConsumerWidget {
                 ),
               ),
               const SizedBox(height: AppSpacing.lg),
-              // Voice AI assistant button — Phase 5 feature
               OutlinedButton.icon(
-                onPressed: () {},
+                onPressed: () => context.push('/voice'),
                 icon: const Icon(Icons.mic),
                 label: const Text('Ask Hey Guardian'),
                 style: OutlinedButton.styleFrom(

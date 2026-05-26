@@ -15,6 +15,7 @@ import '../features/health_monitoring/presentation/pages/health_dashboard_page.d
 import '../features/onboarding/presentation/pages/onboarding_page.dart';
 import '../features/multi_device/presentation/pages/invite_page.dart';
 import '../features/settings/presentation/pages/settings_page.dart';
+import '../features/voice_ai/presentation/pages/voice_assistant_page.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   final authState = ref.watch(authNotifierProvider);
@@ -98,6 +99,10 @@ final routerProvider = Provider<GoRouter>((ref) {
           GoRoute(
             path: '/settings',
             builder: (ctx, st) => const SettingsPage(),
+          ),
+          GoRoute(
+            path: '/voice',
+            builder: (ctx, st) => const VoiceAssistantPage(),
           ),
         ],
       ),

@@ -46,6 +46,12 @@
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 
+	<!-- Microphone + speech recognition — wake word and voice queries -->
+	<key>NSMicrophoneUsageDescription</key>
+	<string>GuardianWatch listens for the "Hey Guardian" wake word to let you ask health questions hands-free.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>GuardianWatch converts your spoken questions to text so the AI assistant can respond.</string>
+
 	<!-- Location permissions — shown to the user in the system prompt -->
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>GuardianWatch uses your location to detect when you leave a safe zone and to share your position with family caregivers during an emergency.</string>
