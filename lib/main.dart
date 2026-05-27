@@ -10,6 +10,8 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'app/app.dart';
 import 'app/di/injection_container.dart';
 import 'features/auth/domain/repositories/auth_repository.dart';
+import 'features/auth/domain/usecases/register_usecase.dart';
+import 'features/auth/domain/usecases/sign_in_usecase.dart';
 import 'features/auth/presentation/bloc/auth_provider.dart';
 import 'features/emergency/domain/repositories/emergency_repository.dart';
 import 'features/emergency/domain/usecases/cancel_emergency_usecase.dart';
@@ -82,6 +84,8 @@ Future<void> main() async {
       overrides: [
         // Bridge get_it singletons into the Riverpod provider graph
         authRepositoryProvider.overrideWithValue(sl<AuthRepository>()),
+        signInUseCaseProvider.overrideWithValue(sl<SignInUseCase>()),
+        registerUseCaseProvider.overrideWithValue(sl<RegisterUseCase>()),
         inviteDataSourceProvider.overrideWithValue(sl<InviteDataSource>()),
         healthRepositoryProvider.overrideWithValue(sl<HealthRepository>()),
         fetchHealthDataUseCaseProvider

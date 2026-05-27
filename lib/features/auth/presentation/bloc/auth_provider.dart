@@ -51,14 +51,18 @@ class AuthNotifier extends AsyncNotifier<AuthState> {
 
   Future<void> signIn({required String email, required String password}) async {
     state = const AsyncData(AuthLoading());
-    final useCase = ref.read(signInUseCaseProvider);
-    final result = await useCase(SignInParams(email: email, password: password));
-    state = AsyncData(
-      result.fold(
-        (failure) => AuthError(failure.message),
-        (user) => AuthAuthenticated(user),
-      ),
-    );
+    try {
+      final useCase = ref.read(signInUseCaseProvider);
+      final result = await useCase(SignInParams(email: email, password: password));
+      state = AsyncData(
+        result.fold(
+          (failure) => AuthError(failure.message),
+          (user) => AuthAuthenticated(user),
+        ),
+      );
+    } catch (e) {
+      state = AsyncData(AuthError(e.toString()));
+    }
   }
 
   Future<void> register({
@@ -69,20 +73,24 @@ class AuthNotifier extends AsyncNotifier<AuthState> {
     required UserRole role,
   }) async {
     state = const AsyncData(AuthLoading());
-    final useCase = ref.read(registerUseCaseProvider);
-    final result = await useCase(RegisterParams(
-      email: email,
-      password: password,
-      name: name,
-      phone: phone,
-      role: role,
-    ));
-    state = AsyncData(
-      result.fold(
-        (failure) => AuthError(failure.message),
-        (user) => AuthAuthenticated(user),
-      ),
-    );
+    try {
+      final useCase = ref.read(registerUseCaseProvider);
+      final result = await useCase(RegisterParams(
+        email: email,
+        password: password,
+        name: name,
+        phone: phone,
+        role: role,
+      ));
+      state = AsyncData(
+        result.fold(
+          (failure) => AuthError(failure.message),
+          (user) => AuthAuthenticated(user),
+        ),
+      );
+    } catch (e) {
+      state = AsyncData(AuthError(e.toString()));
+    }
   }
 
   Future<void> signOut() async {
