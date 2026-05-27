@@ -57,7 +57,6 @@ class HealthNotifier extends AsyncNotifier<HealthState> {
 
   static const _monitoredTypes = [
     HealthReadingType.heartRate,
-    HealthReadingType.bloodOxygen,
     HealthReadingType.steps,
   ];
 
@@ -159,11 +158,10 @@ class HealthNotifier extends AsyncNotifier<HealthState> {
     if (user == null) return;
 
     final repo = ref.read(healthRepositoryProvider);
-    final granted = await repo.requestHealthPermissions(_monitoredTypes);
-    if (granted) {
-      state = const AsyncLoading();
-      ref.invalidateSelf();
-    }
+    await repo.requestHealthPermissions(_monitoredTypes);
+    // Always re-run build so the UI reflects whatever the user granted
+    state = const AsyncLoading();
+    ref.invalidateSelf();
   }
 }
 

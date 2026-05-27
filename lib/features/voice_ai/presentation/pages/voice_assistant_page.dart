@@ -91,10 +91,15 @@ class _VoiceAssistantPageState extends ConsumerState<VoiceAssistantPage>
   }
 
   Future<void> _saveKeys() async {
-    final notifier = ref.read(voiceNotifierProvider.notifier);
     final openAiKey = _openAiKeyController.text.trim();
+    if (openAiKey.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please enter your OpenAI API key.')),
+      );
+      return;
+    }
+    final notifier = ref.read(voiceNotifierProvider.notifier);
     final picoKey = _picoKeyController.text.trim();
-    if (openAiKey.isEmpty) return;
     await notifier.saveOpenAIKey(openAiKey);
     if (picoKey.isNotEmpty) await notifier.savePicovoiceKey(picoKey);
   }
