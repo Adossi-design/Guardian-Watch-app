@@ -13,6 +13,7 @@ import '../features/geofencing/presentation/pages/geofence_zones_page.dart';
 import '../features/geofencing/presentation/pages/live_tracking_page.dart';
 import '../features/health_monitoring/presentation/pages/health_dashboard_page.dart';
 import '../features/onboarding/presentation/pages/onboarding_page.dart';
+import '../features/multi_device/presentation/pages/accept_invite_page.dart';
 import '../features/multi_device/presentation/pages/invite_page.dart';
 import '../features/settings/presentation/pages/settings_page.dart';
 import '../features/voice_ai/presentation/pages/voice_assistant_page.dart';
@@ -113,6 +114,10 @@ final routerProvider = Provider<GoRouter>((ref) {
           GoRoute(
             path: '/dashboard/monitor',
             builder: (ctx, st) => const MonitorDashboardPage(),
+          ),
+          GoRoute(
+            path: '/join',
+            builder: (ctx, st) => const AcceptInvitePage(),
           ),
         ],
       ),

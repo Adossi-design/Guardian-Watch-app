@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_spacing.dart';
 import '../../../../core/constants/app_strings.dart';
@@ -40,69 +41,102 @@ class InvitePage extends ConsumerWidget {
   ) {
     if (state is InviteCreated) {
       final inviteLink = 'guardianwatch://invite/${state.invite.inviteId}';
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Container(
-            padding: const EdgeInsets.all(AppSpacing.cardPadding),
-            decoration: BoxDecoration(
-              color: AppColors.safeGreen.withValues(alpha: 0.1),
-              borderRadius: BorderRadius.circular(AppSpacing.radiusLg),
-              border: Border.all(color: AppColors.safeGreen.withValues(alpha: 0.3)),
-            ),
-            child: Column(
-              children: [
-                const Icon(Icons.check_circle_rounded, color: AppColors.safeGreen, size: 48),
-                const SizedBox(height: AppSpacing.md),
-                Text(AppStrings.inviteSent, style: AppTypography.titleMedium),
-                const SizedBox(height: AppSpacing.sm),
-                Text(
-                  AppStrings.inviteExpiry,
-                  style: AppTypography.body.copyWith(color: AppColors.textSecondary),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: AppSpacing.lg),
-          Text('Share this link:', style: AppTypography.bodyMedium),
-          const SizedBox(height: AppSpacing.sm),
-          Container(
-            padding: const EdgeInsets.all(AppSpacing.md),
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.surfaceContainerHighest,
-              borderRadius: BorderRadius.circular(AppSpacing.radiusMd),
-            ),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    inviteLink,
-                    style: AppTypography.label,
-                    overflow: TextOverflow.ellipsis,
+      return SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(AppSpacing.cardPadding),
+              decoration: BoxDecoration(
+                color: AppColors.safeGreen.withValues(alpha: 0.1),
+                borderRadius: BorderRadius.circular(AppSpacing.radiusLg),
+                border: Border.all(color: AppColors.safeGreen.withValues(alpha: 0.3)),
+              ),
+              child: Column(
+                children: [
+                  const Icon(Icons.check_circle_rounded, color: AppColors.safeGreen, size: 48),
+                  const SizedBox(height: AppSpacing.md),
+                  Text(AppStrings.inviteSent, style: AppTypography.titleMedium),
+                  const SizedBox(height: AppSpacing.sm),
+                  Text(
+                    AppStrings.inviteExpiry,
+                    style: AppTypography.body.copyWith(color: AppColors.textSecondary),
                   ),
-                ),
-                IconButton(
-                  icon: const Icon(Icons.copy),
-                  onPressed: () {
-                    Clipboard.setData(ClipboardData(text: inviteLink));
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Link copied to clipboard')),
-                    );
-                  },
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          const SizedBox(height: AppSpacing.lg),
-          GuardianButton(
-            label: 'Generate new link',
-            onPressed: () {
-              ref.read(inviteNotifierProvider.notifier).reset();
-              ref.read(inviteNotifierProvider.notifier).createInvite(householdId);
-            },
-            variant: GuardianButtonVariant.outlined,
-          ),
-        ],
+            const SizedBox(height: AppSpacing.lg),
+            // QR code — caregiver scans this to join
+            Center(
+              child: Container(
+                padding: const EdgeInsets.all(AppSpacing.md),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(AppSpacing.radiusLg),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.08),
+                      blurRadius: 12,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: QrImageView(
+                  data: inviteLink,
+                  version: QrVersions.auto,
+                  size: 220,
+                  gapless: true,
+                  backgroundColor: Colors.white,
+                ),
+              ),
+            ),
+            const SizedBox(height: AppSpacing.sm),
+            Text(
+              'Ask your caregiver to scan this QR code',
+              style: AppTypography.label.copyWith(color: AppColors.textSecondary),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: AppSpacing.lg),
+            Text('Or share this link:', style: AppTypography.bodyMedium),
+            const SizedBox(height: AppSpacing.sm),
+            Container(
+              padding: const EdgeInsets.all(AppSpacing.md),
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                borderRadius: BorderRadius.circular(AppSpacing.radiusMd),
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      inviteLink,
+                      style: AppTypography.label,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.copy),
+                    onPressed: () {
+                      Clipboard.setData(ClipboardData(text: inviteLink));
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Link copied to clipboard')),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: AppSpacing.lg),
+            GuardianButton(
+              label: 'Generate new link',
+              onPressed: () {
+                ref.read(inviteNotifierProvider.notifier).reset();
+                ref.read(inviteNotifierProvider.notifier).createInvite(householdId);
+              },
+              variant: GuardianButtonVariant.outlined,
+            ),
+          ],
+        ),
       );
     }
 

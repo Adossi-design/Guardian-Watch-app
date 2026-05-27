@@ -88,6 +88,10 @@ dependencies:
   flutter_foreground_task: ^8.14.0
   workmanager: ^0.9.0
 
+  # ── QR code (generate + scan) ─────────────────────────────────────────────
+  qr_flutter: ^4.1.0
+  mobile_scanner: ^5.2.3
+
   # ── Utilities ─────────────────────────────────────────────────────────────
   uuid: ^4.5.2
   intl: ^0.20.2
